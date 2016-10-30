@@ -12,15 +12,12 @@ headers = {
 def status():
     '''
     Check whether you are connected to the internet.
-
-    :param user: Internet access user name
-    :param password: Internet access user name
     '''
     r = requests.get(url, headers=headers)
     connected = 'input type="password"' not in r.text
     return {True:'connected', False:'not connected'}[connected]
 
-def connect(user=None, password=None):
+def connect(user, password):
     '''
     Connect to the internet.
     '''
@@ -37,7 +34,7 @@ def disconnect():
     '''
     requests.post(url, headers=headers, data='logout=1')
 
-def watch(user=None, password=None, n=60, verbose=False):
+def watch(user, password, n=60, verbose=False):
     '''
     Poll the internet connection periodically, and reconnect if the
     connection is down.
@@ -59,9 +56,14 @@ def watch(user=None, password=None, n=60, verbose=False):
         except KeyboardInterrupt:
             break
 
-def main():
-    horetu.cli([connect, disconnect, status, watch],
-               config_file=os.path.expanduser('~/.vutwifi.conf'))
+COMMANDS = {f.__name__:f for f in [status, connect, disconnect, watch]}
+
+def vutwifi(command: tuple(COMMANDS), user=None, password=None)
+    u
+
+
+horetu.cli(vutwifi,
+           config_file=os.path.expanduser('~/.vutwifi.conf'))
 
 if __name__ == '__main__':
     main()
