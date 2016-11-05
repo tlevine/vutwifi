@@ -8,7 +8,7 @@ setup(name='vutwifi',
       py_modules=['vutwifi'],
       install_requires=[
           'requests>=2.11.1',
-          'horetu>=0.2.7',
+          'horetu>=0.3.1',
       ],
       classifiers=[
           'Programming Language :: Python :: 3.5',
@@ -16,6 +16,6 @@ setup(name='vutwifi',
       entry_points = {
           'console_scripts': ['vutwifi = vutwifi:main']
       },
-      version='0.1',
+      version='0.2',
       license='AGPL',
       )
